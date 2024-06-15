@@ -1,0 +1,21 @@
+@init qi
+@accept qf
+
+qi,0,q0r,_,>
+qi,1,q1r,_,>
+q0r,0,q0r,0,>
+q0r,1,q0r,1,>
+q1r,0,q1r,0,>
+q1r,1,q1r,1,>
+q0r,_,q0l,_,<
+q1r,_,q1l,_,<
+q0l,0,qj,_,<
+q0l,1,qr,1,-
+q0l,_,qf,_,-
+q1l,0,qr,0,-
+q1l,1,qj,_,<
+q1l,_,qf,_,-
+qj,0,qj,0,<
+qj,1,qj,1,<
+qj,_,qi,_,>
+qi,_,qf,_,-
