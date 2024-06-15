@@ -1,3 +1,4 @@
+# Simple binary palindrome machine, 1 tape
 @init qi
 @accept qf
 
