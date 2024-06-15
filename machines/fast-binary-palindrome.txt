@@ -1,0 +1,13 @@
+# Fast binary palindrome machine, two tapes
+@init qI
+@accept qF
+
+qI,0,_,qI,0,0,>,>
+qI,1,_,qI,1,1,>,>
+qI,_,_,qR,_,_,-,<
+qR,_,0,qR,_,0,-,<
+qR,_,1,qR,_,1,-,<
+qR,_,_,qT,_,_,<,>
+qT,0,0,qT,0,0,<,>
+qT,1,1,qT,1,1,<,>
+qT,_,_,qF,_,_,-,-

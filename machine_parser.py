@@ -2,21 +2,30 @@ from machine import TuringMachine;
 
 
 def parse(file_name: str) -> TuringMachine:
-    initial: str = None
-    accept: str = None
+    initial: str = ""
+    accept: str = ""
     rules: dict = {}
     lines: list = []
-    with open(file_name, "r") as f:
+    tapes_num: int = 0
+    with open(file_name, "r", encoding="utf-8") as f:
         lines = f.readlines()
-    for line in lines:
-        if line.strip() == "": continue
-        if line.startswith("@init "):
-            initial = line.split(" ")[1].strip()
-        elif line.startswith("@accept "):
-            accept = line.split(" ")[1].strip()
-        elif not line.startswith("#"):
-            print(line.split(","))
-            init_state, start_symbol, end_state, new_symbol, move = map(lambda x: x.strip(), line.split(","))
-            rules[(init_state, start_symbol)] = (end_state, new_symbol, move)
+    tapes_num = 0
+    for line_num in range(len(lines)):
+        if lines[line_num].strip() == "": continue
+        if lines[line_num].startswith("@init "):
+            initial = lines[line_num].split(" ")[1].strip()
+        elif lines[line_num].startswith("@accept "):
+            accept = lines[line_num].split(" ")[1].strip()
+        elif not lines[line_num].startswith("#"):
+            if tapes_num == 0: tapes_num = (len(lines[line_num].split(","))-2)//3
+            if not (len(lines[line_num].split(","))-2)//3 == tapes_num:
+                raise Exception(f"Line {line_num+1}: wrong number of arguments in rule")
+            rule = [x.strip() for x in lines[line_num].split(",")]
+            init_state = rule[0]
+            start_symbols = rule[1:tapes_num+1]
+            end_state = rule[tapes_num+1]
+            new_symbols = rule[2+tapes_num:2+tapes_num*2]
+            moves = rule[2+tapes_num*2:2+tapes_num*3]
+            rules[(init_state, tuple(start_symbols))] = (end_state, tuple(new_symbols), tuple(moves))
     turing_machine = TuringMachine(initial, accept, rules)
     return turing_machine
