@@ -1,6 +1,6 @@
 # Turing Machine Simulator
 
-A Turing Machine simulator written in Python.
+CLI Turing Machine simulator written in Python.
 
 ## How to use
 
