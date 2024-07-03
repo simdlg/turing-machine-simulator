@@ -6,7 +6,7 @@ A Turing Machine simulator written in Python.
 
 Run simulator.py with the following command line arguments:
 - `-f` (or `--file`) to specify the path of the file containing the machine's definition. See the "machines" folder for examples.
-  - example: `-f machines/binary-palindrome.py`
+  - example: `-f machines/binary-palindrome.txt`
 - `-i` (or `--input`) to specify the tape(s) input. For multi-tape machines, use `:` to separate different tapes input.
   - example: `-i 1001#1011::` (example input for the "binary-addition" machine)
   - `1001:1011` specifies `1001` as input for the first tape, and `1011` as input for the second tape.
