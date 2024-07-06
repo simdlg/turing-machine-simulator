@@ -27,5 +27,6 @@ def parse(file_name: str) -> TuringMachine:
             new_symbols = rule[2+tapes_num:2+tapes_num*2]
             moves = rule[2+tapes_num*2:2+tapes_num*3]
             rules[(init_state, tuple(start_symbols))] = (end_state, tuple(new_symbols), tuple(moves))
+    if initial == "" or accept == "": raise Exception("Missing @init and @accept lines")
     turing_machine = TuringMachine(initial, accept, rules)
     return turing_machine
